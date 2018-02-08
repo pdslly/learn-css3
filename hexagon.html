@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            min-width: 1000px;
+            min-height: 600px;
+            overflow: hidden;
+        }
+        body,div{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+        .view{
+            height: 100%;
+            background: gainsboro;
+            position: relative;
+        }
+        .control{
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+        .control button{
+            display: inline-block;
+        }
+        .container{
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 300px;
+            height: 200px;
+            perspective: 3000px;
+            perspective-origin: center 110%;
+        }
+        .hexagon{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(0);
+            transition: transform 500ms ease-out;
+        }
+        .hexagon div{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.9;
+            font-size: 60px;
+            line-height: 200px;
+            text-align: center;
+            color: #FFF;
+        }
+        .one{
+            background: lightsalmon;
+            transform: rotateY(0) translateZ(400px);
+        }
+        .two{
+            background: lightpink;
+            transform: rotateY(60deg) translateX(0) translateZ(400px);
+        }
+        .thre{
+            background: lightgreen;
+            transform: rotateY(-240deg) translateX(0) translateZ(400px);
+        }
+        .four{
+            background: lightskyblue;
+            transform: rotateY(180deg) translateZ(400px);
+        }
+        .five{
+            background: lightblue;
+            transform: rotateY(240deg) translateX(0) translateZ(400px);
+        }
+        .six{
+            background: lightseagreen;
+            transform: rotateY(-60deg) translateX(0) translateZ(400px);
+        }
+    </style>
+</head>
+<body>
+    <div class="view">
+        <div class="container">
+            <div id="hexagon" class="hexagon">
+                <div class="one">1</div>
+                <div class="two">2</div>
+                <div class="thre">3</div>
+                <div class="four">4</div>
+                <div class="five">5</div>
+                <div class="six">6</div>
+            </div>
+        </div>
+    </div>
+    <div class="control">
+        <button id="btn-prev" onclick="prev()">上一张</button>
+        <button id="btn-next" onclick="next()">下一张</button>
+    </div>
+    <script>
+        var wrap = document.getElementById('hexagon')
+        var current_deg = 0
+        function prev() {
+            current_deg += 60
+            wrap.style.cssText = `transform: rotateY(${current_deg}deg);`
+        }
+        function next() {
+            current_deg -= 60
+            wrap.style.cssText = `transform: rotateY(${current_deg}deg);`
+        }
+    </script>
+</body>
+</html>
